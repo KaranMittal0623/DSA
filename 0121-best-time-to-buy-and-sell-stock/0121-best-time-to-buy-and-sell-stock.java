@@ -1,17 +1,16 @@
 class Solution {
     public int maxProfit(int[] prices) {
-        // Maintain 3 variables and do linear search and maintain the three variables
-        int buy_price = prices[0];
-        int maxProfit = 0;
-        for(int i =1;i<prices.length;i++){
-            if(prices[i]<buy_price){
-                buy_price = prices[i];
+        int max_profit=0;
+        int buy=prices[0];
+        for(int i=1;i<prices.length;i++){
+            int profit=prices[i]-buy;
+            if(profit>max_profit){
+                max_profit=profit;
             }
-            else{
-                int current_profit = prices[i] - buy_price;
-                maxProfit = Math.max(current_profit,maxProfit);
+            if(prices[i]<buy){
+                buy=prices[i];
             }
         }
-        return maxProfit;
+        return max_profit;
     }
 }
